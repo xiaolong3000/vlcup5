@@ -129,6 +129,8 @@ class MainActivity : AppCompatActivity() {
                       if (success) {
                           filename=""//重置
                           Toast.makeText(this@MainActivity, "上传成功", Toast.LENGTH_LONG).show()
+                          if(localfile.exists())
+                              localfile.delete()//上传成功后删除本地文件
                       }
 
                       ftp.ftpLogOut()
