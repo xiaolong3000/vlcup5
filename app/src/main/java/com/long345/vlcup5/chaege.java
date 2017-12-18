@@ -12,7 +12,7 @@ public class chaege {
         String ip="";
         switch (s){
             case "家":ip="192.168.31.190";break;
-            case "测试":ip="192.168.1.112";break;
+            case "测试":ip="10.103.18.142";break;
         }
         return ip;
     }
