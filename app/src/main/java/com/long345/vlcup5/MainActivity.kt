@@ -21,9 +21,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.content.DialogInterface
 import android.net.wifi.WifiManager
-
-
-
+import com.long345.vlcup5.R.id.status
 
 
 class MainActivity : AppCompatActivity() {
@@ -77,7 +75,10 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             Thread(runnable).start()
+
         }
+
+
 wenhao.setOnClickListener {
     var builder=AlertDialog.Builder(this@MainActivity)
     builder.setTitle("").setMessage("点击上传没有反应，无任何提示，进度条不动。\r\n第一请检查视频是否存储在SD卡上!\r\n第二请检查是否选错了上传部门").show()
@@ -131,10 +132,12 @@ wenhao.setOnClickListener {
                   if (login) {
                       val localfile=File(filepath + "/" + filename)
                          if(localfile.exists()){
-                         val success = ftp.uploadFile(localfile, renyuan.text.toString(), progressBar)
+                       val   success = ftp.uploadFile(localfile, renyuan.text.toString(), progressBar)
                          if (success) {
+
                              filename=""//重置
                              Toast.makeText(this@MainActivity, "上传成功", Toast.LENGTH_LONG).show()
+
                          }
                      }else{
                          Toast.makeText(this@MainActivity, "选择的文件已经被删除", Toast.LENGTH_LONG).show()
@@ -254,6 +257,7 @@ wenhao.setOnClickListener {
 //
 //    }
 }
+
 
 
 
