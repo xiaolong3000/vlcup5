@@ -52,17 +52,14 @@ class MainActivity : AppCompatActivity() {
         button = findViewById(R.id.button)
 
 
-        var select2: Button
-        select2 = findViewById(R.id.button2)
 
 
-        select2.setOnClickListener {
-            var intent = Intent()
+
+        button2.setOnClickListener {
+            val intent = Intent()
             intent.type = "video/*"
-
             intent.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(intent, 1)
-
         }
 
 
@@ -115,7 +112,6 @@ wenhao.setOnClickListener {
 
     var runnable = Runnable {
         kotlin.run {
-         //   println(ip+"                asdasd           asdasd")
           if (!bumen.equals("未设置")&&!renyuan.equals("未设置")) {
               if(filename!="") {
                   Looper.prepare()
@@ -123,14 +119,17 @@ wenhao.setOnClickListener {
                   val login= ftp.ftpLogin()
                   if (login) {
                       val localfile=File(filepath + "/" + filename)
+                         if(localfile.exists()){
+                         val success = ftp.uploadFile(localfile, renyuan.text.toString(), progressBar)
+                         if (success) {
+                             filename=""//重置
+                             Toast.makeText(this@MainActivity, "上传成功", Toast.LENGTH_LONG).show()
+                         }
+                     }else{
+                         Toast.makeText(this@MainActivity, "选择的文件已经被删除", Toast.LENGTH_LONG).show()
+                     }
 
-                    //  Toast.makeText(this@MainActivity, "开始上传文件，如果进度条不动请检查存储是否在SD卡上", Toast.LENGTH_LONG).show()
-                      val success = ftp.uploadFile(localfile, renyuan.text.toString(), progressBar)
-                      if (success) {
-                      //    localfile.delete()
-                          filename=""//重置
-                          Toast.makeText(this@MainActivity, "上传成功", Toast.LENGTH_LONG).show()
-                      }
+
                       ftp.ftpLogOut()
 
                   }else{
@@ -164,6 +163,8 @@ wenhao.setOnClickListener {
 
         }
     }
+
+
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
