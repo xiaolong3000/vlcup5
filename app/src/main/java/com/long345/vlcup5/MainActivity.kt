@@ -48,18 +48,27 @@ class MainActivity : AppCompatActivity() {
             }))
         }
         setContentView(R.layout.activity_main)
-        var button: Button
-        button = findViewById(R.id.button)
+
 
 
 
 
 
         button2.setOnClickListener {
-            val intent = Intent()
-            intent.type = "video/*"
-            intent.action = Intent.ACTION_GET_CONTENT
-            startActivityForResult(intent, 1)
+//            val intent = Intent()
+//            intent.type = "image/*"
+//            intent.action = Intent.ACTION_GET_CONTENT
+//            startActivityForResult(intent, 1)
+            val builder=AlertDialog.Builder(this@MainActivity)
+            val path="" + Environment.getExternalStorageDirectory() + "/DCIM/Camera"
+            val allfile=File(path)
+            builder.setTitle("选择上传文件").setItems(allfile.list(),DialogInterface.OnClickListener(
+                    fun (_,num:Int){
+                       // println(allfile.list().get(num))
+                        filename=allfile.list().get(num)
+                        filepath = "" + Environment.getExternalStorageDirectory() + "/DCIM/Camera"
+                    }
+            )).show()
         }
 
 
@@ -71,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         }
 wenhao.setOnClickListener {
     var builder=AlertDialog.Builder(this@MainActivity)
-    builder.setTitle("").setMessage("点击上传没有反应，且无任何提示而且进度条不动请检查存储是否在SD卡上!").show()
+    builder.setTitle("").setMessage("点击上传没有反应，无任何提示，进度条不动。\r\n第一请检查视频是否存储在SD卡上!\r\n第二请检查是否选错了上传部门").show()
 }
 
         imageButton.setOnClickListener{
@@ -94,10 +103,10 @@ wenhao.setOnClickListener {
         bumen.text=share.getString("bumen","未设置")
 
         imageButton5.setOnClickListener {
-            var builder=AlertDialog.Builder(this@MainActivity)
+            val builder=AlertDialog.Builder(this@MainActivity)
             builder.setTitle("").setItems(chaege.renyuans,DialogInterface.OnClickListener(
                     fun (d:DialogInterface,num:Int){
-                        var share=getSharedPreferences("renyuan",Context.MODE_PRIVATE)
+                        val share=getSharedPreferences("renyuan",Context.MODE_PRIVATE)
                         share.edit().putString("renyuan",chaege.renyuans[num]).apply()
                         renyuan.text=chaege.renyuans[num]
                     }
@@ -113,6 +122,8 @@ wenhao.setOnClickListener {
     var runnable = Runnable {
         kotlin.run {
           if (!bumen.equals("未设置")&&!renyuan.equals("未设置")) {
+
+
               if(filename!="") {
                   Looper.prepare()
                   val ftp = f1(chaege.c(bumen.text.toString()), 21, "ls", "ls")
@@ -167,24 +178,22 @@ wenhao.setOnClickListener {
 
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 1) {
-            if (resultCode == Activity.RESULT_OK) {
-                var uri = data?.data
-                var cosur = contentResolver.query(uri, null, null, null, null)
-
-
-                cosur.moveToFirst()
-                var v_name = cosur.getString(2)
-
-                filename = v_name
-               filepath = "" + Environment.getExternalStorageDirectory() + "/DCIM/Camera"
-
-
-            }
-        }
-    }
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//        if (requestCode == 1) {
+//            if (resultCode == Activity.RESULT_OK) {
+//                var uri = data?.data
+//                var cosur = contentResolver.query(uri, null, null, null, null)
+//                cosur.moveToFirst()
+//                var v_name = cosur.getString(2)
+//
+//                filename = v_name
+//
+//
+//
+//            }
+//        }
+//    }
 
 //    fun ftplogin(ip: String, ftpuser: String, ftppass: String): Boolean {
 //        var isLogin = false

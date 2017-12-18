@@ -30,18 +30,16 @@
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="执法仪时间：" />
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:layout_weight="21"
-            android:text="" />
+            />
     </LinearLayout>
 
 
@@ -53,19 +51,17 @@
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
 
-            android:layout_weight="1"
             android:text="当前部门：" />
 
         <TextView
             android:id="@+id/bumen"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:layout_weight="2"
-            android:text="" />
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -75,16 +71,14 @@
 
         <TextView
             android:id="@+id/textview"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:text="人员 :" />
 
         <TextView
             android:id="@+id/renyuan"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:text="" />
 
     </LinearLayout>
@@ -95,7 +89,7 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
 
             android:text="文件上传进度：" />
@@ -141,19 +135,19 @@
             <ImageButton
                 android:id="@+id/imageButton5"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="85dp"
                 app:srcCompat="@android:drawable/ic_menu_view" />
 
             <ImageButton
                 android:id="@+id/imageButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="85dp"
                 app:srcCompat="@android:drawable/ic_menu_manage" />
 
             <ImageButton
                 android:id="@+id/wenhao"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="85dp"
                 app:srcCompat="@android:drawable/ic_menu_help" />
 
         </LinearLayout>
