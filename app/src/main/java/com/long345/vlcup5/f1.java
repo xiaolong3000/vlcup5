@@ -2,6 +2,8 @@ package com.long345.vlcup5;
 
 import android.content.Context;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+
 
 import java.io.*;
 import java.net.SocketException;
@@ -120,7 +122,7 @@ public class f1 {
     /*
          * @return upload file
          * */
-    public boolean uploadFile(File localFile, String renyuan, ProgressBar progressBar){
+    public boolean uploadFile(File localFile, String renyuan, ProgressBar process){
         BufferedInputStream inStream=null;
         SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
         long startTime=System.currentTimeMillis();
@@ -142,11 +144,11 @@ public class f1 {
                inStream = new BufferedInputStream(new FileInputStream(localFile));
            //    System.out.println(localFile.getName() + " start to upload  " + time);
              //  success = this.ftpclient.storeFile(localFile.getName(), inStream);
-               this.ftpclient.setCopyStreamListener(new FTPProcess(localFile.length(),startTime,progressBar));
+               this.ftpclient.setCopyStreamListener(new FTPProcess(localFile.length(),startTime,process));
                success=this.ftpclient.storeFile(localFile.getName(), inStream);
                if (success) {
-
                    System.out.println(localFile.getName() + " success to upload to server");
+
                }
            }catch(Exception e){
                e.printStackTrace();

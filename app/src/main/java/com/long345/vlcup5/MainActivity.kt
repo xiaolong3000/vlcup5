@@ -70,12 +70,12 @@ class MainActivity : AppCompatActivity() {
 
 
         button.setOnClickListener {
-
-
-
             Thread(runnable).start()
         }
-
+wenhao.setOnClickListener {
+    var builder=AlertDialog.Builder(this@MainActivity)
+    builder.setTitle("").setMessage("点击上传没有反应，且无任何提示而且进度条不动请检查存储是否在SD卡上!").show()
+}
 
         imageButton.setOnClickListener{
 
@@ -119,25 +119,25 @@ class MainActivity : AppCompatActivity() {
           if (!bumen.equals("未设置")&&!renyuan.equals("未设置")) {
               if(filename!="") {
                   Looper.prepare()
-                  var ftp = f1(chaege.c(bumen.text.toString()), 21, "ls", "ls")
-                  var login= ftp.ftpLogin()
+                  val ftp = f1(chaege.c(bumen.text.toString()), 21, "ls", "ls")
+                  val login= ftp.ftpLogin()
                   if (login) {
-                      var localfile=File(filepath + "/" + filename)
-                    //  Toast.makeText(this@MainActivity, "开始上传文件，如果进度条不动请检查存储是否在SD卡上", Toast.LENGTH_LONG).show()
-                      var success = ftp.uploadFile(localfile, renyuan.text.toString(), progressBar)
+                      val localfile=File(filepath + "/" + filename)
 
+                    //  Toast.makeText(this@MainActivity, "开始上传文件，如果进度条不动请检查存储是否在SD卡上", Toast.LENGTH_LONG).show()
+                      val success = ftp.uploadFile(localfile, renyuan.text.toString(), progressBar)
                       if (success) {
+                      //    localfile.delete()
                           filename=""//重置
                           Toast.makeText(this@MainActivity, "上传成功", Toast.LENGTH_LONG).show()
-                          if(localfile.exists())
-                              localfile.delete()//上传成功后删除本地文件
                       }
-
                       ftp.ftpLogOut()
+
                   }else{
                       Toast.makeText(this@MainActivity, "连接服务器失败", Toast.LENGTH_LONG).show()
                   }
                   Looper.loop()
+
               }else{
                   Looper.prepare()
                   Toast.makeText(this@MainActivity,"选择文件为空,请选择文件",Toast.LENGTH_LONG).show()
@@ -161,6 +161,7 @@ class MainActivity : AppCompatActivity() {
 //
 //
 //            Looper.loop()
+
         }
     }
 
