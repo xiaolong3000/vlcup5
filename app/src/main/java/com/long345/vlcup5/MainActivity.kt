@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.content.DialogInterface
 import android.net.wifi.WifiManager
-import com.long345.vlcup5.R.id.status
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -60,9 +60,12 @@ class MainActivity : AppCompatActivity() {
             val builder=AlertDialog.Builder(this@MainActivity)
             val path="" + Environment.getExternalStorageDirectory() + "/DCIM/Camera"
             val allfile=File(path)
-            builder.setTitle("选择上传文件").setItems(allfile.list(),DialogInterface.OnClickListener(
+            val list=allfile.list()
+        //    list.filter { it.contains(".") }
+            builder.setTitle("选择上传文件").setItems(list,DialogInterface.OnClickListener(
                     fun (_,num:Int){
                        // println(allfile.list().get(num))
+
                         filename=allfile.list().get(num)
                         filepath = "" + Environment.getExternalStorageDirectory() + "/DCIM/Camera"
                     }

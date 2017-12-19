@@ -148,7 +148,7 @@ public class f1 {
                success=this.ftpclient.storeFile(localFile.getName(), inStream);
                if (success) {
                    System.out.println(localFile.getName() + " success to upload to server");
-                      localFile.delete();
+                   localFile.delete();
                }
            }catch(Exception e){
                e.printStackTrace();
