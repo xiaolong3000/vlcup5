@@ -93,29 +93,17 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="文件上传进度：" />
-        <TextView
-    android:id="@+id/up_text"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-
-    />
 
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="25dp">
-
-
-        <ProgressBar
+        <com.daimajia.numberprogressbar.NumberProgressBar
             android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/NumberProgressBar_Default"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1" />
 
-
     </LinearLayout>
+
 
 
     <LinearLayout

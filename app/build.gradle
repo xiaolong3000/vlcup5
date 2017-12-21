@@ -31,4 +31,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation files('src/main/java/com/long345/vlcup5/commons-net-3.6.jar')
+    compile 'com.daimajia.numberprogressbar:library:1.4@aar'
 }
