@@ -1,11 +1,10 @@
 package com.long345.vlcup5;
 
-import android.content.Context;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.daimajia.numberprogressbar.NumberProgressBar;
+
+import android.widget.ProgressBar;
+
+
 
 import org.apache.commons.net.io.CopyStreamEvent;
 import org.apache.commons.net.io.CopyStreamListener;
@@ -16,13 +15,13 @@ import org.apache.commons.net.io.CopyStreamListener;
 public class FTPProcess implements CopyStreamListener {
     private long fileSize;
     private long startTime;
-    private NumberProgressBar process;
+    private ProgressBar process;
 
-    public FTPProcess(long fileSize, long startTime, NumberProgressBar process) {
+    public FTPProcess(long fileSize, long startTime, ProgressBar process) {
         this.fileSize = fileSize;
         this.startTime = startTime;
         this.process = process;
-process.setMax(100);
+
 
     }
 

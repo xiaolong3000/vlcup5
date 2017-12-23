@@ -5,7 +5,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-import com.daimajia.numberprogressbar.NumberProgressBar;
 
 import java.io.*;
 import java.net.SocketException;
@@ -124,7 +123,7 @@ public class f1 {
     /*
          * @return upload file
          * */
-    public boolean uploadFile(File localFile, String renyuan, NumberProgressBar process){
+    public boolean uploadFile(File localFile, String renyuan, ProgressBar process){
         BufferedInputStream inStream=null;
         SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
         long startTime=System.currentTimeMillis();

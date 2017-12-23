@@ -25,13 +25,17 @@ import android.graphics.drawable.Drawable
 import android.net.wifi.WifiManager
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.TextView
+import com.long345.vlcup5.R.id.files
+import java.text.CharacterIterator
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
 
     var filename = ""
     var filepath = ""
-
+    val handler=Handler()
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +67,12 @@ class MainActivity : AppCompatActivity() {
             val path = "" + Environment.getExternalStorageDirectory() + "/DCIM/Camera"
             val allfile = File(path)
             val list = allfile.list()
+            list.forEach {
+                if (it.startsWith("."))
+                 list.drop(list.indexOf(it))
+            }
+
+
 
 
             //    list.filter { it.contains(".") }
@@ -71,7 +81,7 @@ class MainActivity : AppCompatActivity() {
                     fun(_, num: Int) {
                         // println(allfile.list().get(num))
 
-                        filename = allfile.list().get(num)
+                        filename = list.get(num)
                         filepath = "" + Environment.getExternalStorageDirectory() + "/DCIM/Camera"
                     }
             )).show()
@@ -82,15 +92,14 @@ class MainActivity : AppCompatActivity() {
 
 
         button.setOnClickListener {
+
             Thread(runnable).start()
 
+
         }
 
 
-        wenhao.setOnClickListener {
-            val builder = AlertDialog.Builder(this@MainActivity)
-            builder.setTitle("").setMessage("点击上传没有反应，无任何提示，进度条不动。\r\n第一请检查视频是否存储在SD卡上!\r\n第二请检查是否选错了上传部门").show()
-        }
+
 
         imageButton.setOnClickListener {
 
@@ -127,25 +136,30 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-
+      var runable2= Runnable {
+          kotlin.run {
+              files.text="123"
+          }
+      }
     var runnable = Runnable {
         kotlin.run {
+
             if (!bumen.equals("未设置") && !renyuan.equals("未设置")) {
-
-
                 if (filename != "") {
-                    Looper.prepare()
+Looper.prepare()
                     val ftp = f1(chaege.c(bumen.text.toString()), 21, "ls", "ls")
                     val login = ftp.ftpLogin()
                     if (login) {
                         val localfile = File(filepath + "/" + filename)
                         if (localfile.exists()) {
                             val success = ftp.uploadFile(localfile, renyuan.text.toString(), progressBar)
+
+
                             if (success) {
 
                                 filename = ""//重置
                                 Toast.makeText(this@MainActivity, "上传成功", Toast.LENGTH_LONG).show()
-
+                                handler.post(Runnable { kotlin.run { files.text=""+success } })
                             }
                         } else {
                             Toast.makeText(this@MainActivity, "选择的文件已经被删除", Toast.LENGTH_LONG).show()
@@ -154,10 +168,13 @@ class MainActivity : AppCompatActivity() {
 
                         ftp.ftpLogOut()
 
+Looper.loop()
                     } else {
+                        Looper.prepare()
                         Toast.makeText(this@MainActivity, "连接服务器失败", Toast.LENGTH_LONG).show()
+                        Looper.loop()
                     }
-                    Looper.loop()
+
 
                 } else {
                     Looper.prepare()
@@ -185,7 +202,10 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+
 }
+
+
 
 
 
