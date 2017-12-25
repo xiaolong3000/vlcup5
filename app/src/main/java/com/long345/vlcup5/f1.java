@@ -123,14 +123,24 @@ public class f1 {
     /*
          * @return upload file
          * */
-    public boolean uploadFile(File localFile, String renyuan, ProgressBar process){
+    public boolean uploadFile(File localFile,String bumen,String banci, String renyuan, ProgressBar process){
         BufferedInputStream inStream=null;
         SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
         long startTime=System.currentTimeMillis();
         String time=df.format(new Date());
         boolean success=false;
            try {
-                 String  remotePath="/"+time+"/";
+               String  remotePath="/"+time+"/";
+               if (!this.ftpclient.changeWorkingDirectory(remotePath)){
+                   this.ftpclient.makeDirectory(remotePath);
+                   this.ftpclient.changeWorkingDirectory(remotePath);
+               }
+               remotePath=remotePath+"/"+bumen +"/";
+               if (!this.ftpclient.changeWorkingDirectory(remotePath)){
+                   this.ftpclient.makeDirectory(remotePath);
+                   this.ftpclient.changeWorkingDirectory(remotePath);
+               }
+               remotePath=remotePath+"/"+banci +"/";
                if (!this.ftpclient.changeWorkingDirectory(remotePath)){
                    this.ftpclient.makeDirectory(remotePath);
                    this.ftpclient.changeWorkingDirectory(remotePath);
@@ -139,7 +149,6 @@ public class f1 {
                if (!this.ftpclient.changeWorkingDirectory(remotePath)){
                    this.ftpclient.makeDirectory(remotePath);
                    this.ftpclient.changeWorkingDirectory(remotePath);
-
                }
 
                inStream = new BufferedInputStream(new FileInputStream(localFile));
