@@ -67,10 +67,10 @@ class MainActivity : AppCompatActivity() {
             val path = "" + Environment.getExternalStorageDirectory() + "/DCIM/Camera"
             val allfile = File(path)
             val list = allfile.list()
-            list.forEach {
-                if (it.startsWith("."))
-                 list.drop(list.indexOf(it))
-            }
+
+
+
+
 
 
 
@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener {
 
-            Thread(runnable).start()
+            Thread(runable2).start()
 
 
         }
@@ -138,11 +138,16 @@ class MainActivity : AppCompatActivity() {
     }
       var runable2= Runnable {
           kotlin.run {
-              files.text="123"
+              if (filename.contains("dthumb"))//这种方式可以找到这个隐藏文件夹
+              {
+                  handler.post(Runnable { kotlin.run { files.text="123" } })
+
+              }
           }
       }
     var runnable = Runnable {
         kotlin.run {
+
 
             if (!bumen.equals("未设置") && !renyuan.equals("未设置")) {
                 if (filename != "") {
