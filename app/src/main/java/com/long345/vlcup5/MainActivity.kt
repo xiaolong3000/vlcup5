@@ -23,6 +23,7 @@ import android.content.DialogInterface
 import android.net.wifi.WifiManager
 import com.long345.vlcup5.chaege.chage_banci
 import com.long345.vlcup5.chaege.chage_bumen
+import java.net.URL
 
 
 class MainActivity : AppCompatActivity() {
@@ -46,8 +47,6 @@ class MainActivity : AppCompatActivity() {
                     }))
         }
         setContentView(R.layout.activity_main)
-
-
 
 
 
@@ -77,7 +76,17 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener {
 
-            Thread(runnable).start()
+         //   Thread(runnable).start()
+            Thread(Runnable { kotlin.run {
+                val versiontxt=URL("http://192.168.31.190:8080/vlc/version.xml").readText()
+                val regex=Regex( "<version>([0-9]+)<version>")
+                val result=regex.find(versiontxt)?.value?.replace("<version>","")
+               // println(result?.replace("<version>",""))
+
+               handler.post(Runnable { kotlin.run { files.text=result}})
+               println(result?.toInt())
+
+            } }).start()
 
 
         }
@@ -143,8 +152,6 @@ class MainActivity : AppCompatActivity() {
 //      }
     var runnable = Runnable {
         kotlin.run {
-
-
             if (!bumen.equals("未设置") or  !renyuan.equals("未设置") or !banci.equals("未设置")) {
 
                     Looper.prepare()
