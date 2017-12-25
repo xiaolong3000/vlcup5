@@ -186,6 +186,7 @@ public class f1 {
             this.ftpclient.changeWorkingDirectory(localpath);
             bufferedOutputStream=new BufferedOutputStream(new FileOutputStream(localpath+"\\"+remotefile));
             success=this.ftpclient.retrieveFile(remotefile,bufferedOutputStream);
+
             if(success){
                  final SimpleDateFormat df=new SimpleDateFormat("HH:mm");
                 System.out.println("down file success   "+ df.format(new Date()));
