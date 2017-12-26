@@ -25,14 +25,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity" />
+        <activity android:name=".ad" />
 
         <service
-            android:name=".MyService"
+            android:name=".downloadapk"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".ad"></activity>
+        <receiver
+            android:name=".downloadreceiver"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

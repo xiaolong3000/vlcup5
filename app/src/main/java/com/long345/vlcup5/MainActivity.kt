@@ -45,74 +45,12 @@ class MainActivity : AppCompatActivity() {
             builder.setTitle("").setMessage("wifi没有连接").setPositiveButton("OK", DialogInterface.OnClickListener(
                     fun(dia: DialogInterface, num: Int) {
                         this@MainActivity.finish()
-
                     }))
         }
         setContentView(R.layout.activity_main)
-//        var version:Int=0
-//            Thread(Runnable { kotlin.run {
-//                val versiontxt=URL("http://${mainip}:8080/vlc/version.xml").readText()//http://192.168.31.190:8080/vlc/version.xml
-//                val regex=Regex( "<version>([0-9]+)<version>")
-//                val result=regex.find(versiontxt)!!.value.replace("<version>","")
-//                version= result.toInt()
-//
-//                //   handler.post(Runnable { kotlin.run { files.text=result}})
-//                //    println(result?.toInt())
-//                println(version)
-//            } }).start()
-//        val share_version = getSharedPreferences("myversion", Context.MODE_PRIVATE)
-//        val thisversion = share_version.getString("myversion", "0").toInt()
-//        println(thisversion)
-//       if(thisversion==0){
-//           share_version.edit().putString("myversion",""+version).apply()
-//       }else if(version>thisversion){
-//           val builder=AlertDialog.Builder(this@MainActivity)
-//           builder.setTitle("").setMessage("有新版本！").setPositiveButton(0,DialogInterface.OnClickListener(
-//                   fun (_,num:Int){
-//                       val intent=Intent("com.long345.vlcup5.MyService")
-//                       startService(intent)
-//                   }
-//           ))
-//       }
-
-
-
-//        button2.setOnClickListener {
-            //            val intent = Intent()
-//            intent.type = "image/*"
-//            intent.action = Intent.ACTION_GET_CONTENT
-//            startActivityForResult(intent, 1)
-
-
-
-
-
-
-//            builder.setTitle("选择上传文件").setItems(list, DialogInterface.OnClickListener(
-//                    fun(_, num: Int) {
-//                        // println(allfile.list().get(num))
-//
-//                        filename = list.get(num)
-//
-//                    }
-//            )).show()
-//        }
-
-
-
         button.setOnClickListener {
-
             Thread(runnable).start()
-
-
-
-
-
         }
-
-
-
-
         bumen_image.setOnClickListener {
 
             val builder = AlertDialog.Builder(this@MainActivity)
