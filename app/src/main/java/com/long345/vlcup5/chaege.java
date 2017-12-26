@@ -10,7 +10,8 @@ public class chaege {
     }
 
     public static String mainip="192.168.31.190";
-    public static final String [] bumens={"客楼","测试"};
+    public static final String [] bumens={"上北外勤","上南外勤","下北外勤","下南外勤","客场外勤"};
+    public static final String [] bumens2={"南商检","北商检"};
     public static final String [] renyuans={"kc11","kc12","kc13","kc14"};
     public static final String[] bancis={"白班","夜班"};
 
@@ -19,8 +20,11 @@ public class chaege {
     public static String chage_bumen(String bumen){
         String s="error";
         switch (bumen){
-            case "客楼":s="kl";break;
-            case "测试":s="ceshi";break;
+            case "上北外勤":s="sbwq";break;
+            case "上南外勤":s="snwq";break;
+            case "下北外勤":s="xbwq";break;
+            case "下南外勤":s="xnwq";break;
+            case "客场外勤":s="kcwq";break;
         }
         return s;
     }

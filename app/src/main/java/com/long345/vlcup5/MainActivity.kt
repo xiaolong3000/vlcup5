@@ -22,6 +22,8 @@ import java.util.*
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.wifi.WifiManager
+import com.long345.vlcup5.R.id.bumen_image
+import com.long345.vlcup5.R.id.renyuan_image
 import com.long345.vlcup5.chaege.*
 import java.net.URL
 
@@ -47,31 +49,31 @@ class MainActivity : AppCompatActivity() {
                     }))
         }
         setContentView(R.layout.activity_main)
-        var version:Int=0
-            Thread(Runnable { kotlin.run {
-                val versiontxt=URL("http://${mainip}:8080/vlc/version.xml").readText()//http://192.168.31.190:8080/vlc/version.xml
-                val regex=Regex( "<version>([0-9]+)<version>")
-                val result=regex.find(versiontxt)!!.value.replace("<version>","")
-                version= result.toInt()
-
-                //   handler.post(Runnable { kotlin.run { files.text=result}})
-                //    println(result?.toInt())
-                println(version)
-            } }).start()
-        val share_version = getSharedPreferences("myversion", Context.MODE_PRIVATE)
-        val thisversion = share_version.getString("myversion", "0").toInt()
-        println(thisversion)
-       if(thisversion==0){
-           share_version.edit().putString("myversion",""+version).apply()
-       }else if(version>thisversion){
-           val builder=AlertDialog.Builder(this@MainActivity)
-           builder.setTitle("").setMessage("有新版本！").setPositiveButton(0,DialogInterface.OnClickListener(
-                   fun (_,num:Int){
-                       val intent=Intent("com.long345.vlcup5.MyService")
-                       startService(intent)
-                   }
-           ))
-       }
+//        var version:Int=0
+//            Thread(Runnable { kotlin.run {
+//                val versiontxt=URL("http://${mainip}:8080/vlc/version.xml").readText()//http://192.168.31.190:8080/vlc/version.xml
+//                val regex=Regex( "<version>([0-9]+)<version>")
+//                val result=regex.find(versiontxt)!!.value.replace("<version>","")
+//                version= result.toInt()
+//
+//                //   handler.post(Runnable { kotlin.run { files.text=result}})
+//                //    println(result?.toInt())
+//                println(version)
+//            } }).start()
+//        val share_version = getSharedPreferences("myversion", Context.MODE_PRIVATE)
+//        val thisversion = share_version.getString("myversion", "0").toInt()
+//        println(thisversion)
+//       if(thisversion==0){
+//           share_version.edit().putString("myversion",""+version).apply()
+//       }else if(version>thisversion){
+//           val builder=AlertDialog.Builder(this@MainActivity)
+//           builder.setTitle("").setMessage("有新版本！").setPositiveButton(0,DialogInterface.OnClickListener(
+//                   fun (_,num:Int){
+//                       val intent=Intent("com.long345.vlcup5.MyService")
+//                       startService(intent)
+//                   }
+//           ))
+//       }
 
 
 
@@ -128,21 +130,6 @@ class MainActivity : AppCompatActivity() {
         val share = getSharedPreferences("bumen", Context.MODE_PRIVATE)
         bumen.text = share.getString("bumen", "未设置")
 
-        renyuan_image.setOnClickListener {
-            val builder = AlertDialog.Builder(this@MainActivity)
-            builder.setTitle("").setItems(chaege.renyuans, DialogInterface.OnClickListener(
-                    fun(d: DialogInterface, num: Int) {
-                        val share = getSharedPreferences("renyuan", Context.MODE_PRIVATE)
-                        share.edit().putString("renyuan", chaege.renyuans[num]).apply()
-                        renyuan.text = chaege.renyuans[num]
-                    }
-            ))
-            builder.show()
-        }
-        val share2 = getSharedPreferences("renyuan", Context.MODE_PRIVATE)
-        renyuan.text = share2.getString("renyuan", "未设置")
-
-
         banci_image.setOnClickListener {
             val builder = AlertDialog.Builder(this@MainActivity)
             builder.setTitle("").setItems(chaege.bancis, DialogInterface.OnClickListener(
@@ -157,7 +144,9 @@ class MainActivity : AppCompatActivity() {
         val share3=getSharedPreferences("banci",Context.MODE_PRIVATE)
         banci.text=share3.getString("banci","未设置")
 
-    }
+    }//oncreate
+
+
 //      var runable2= Runnable {//测试用
 //          kotlin.run {
 //              if (filename.contains("dthumb"))//这种方式可以找到这个隐藏文件夹
@@ -169,7 +158,7 @@ class MainActivity : AppCompatActivity() {
 //      }
     var runnable = Runnable {
         kotlin.run {
-            if (!bumen.equals("未设置") or  !renyuan.equals("未设置") or !banci.equals("未设置")) {
+            if (!bumen.equals("未设置") or  !renyuan.equals("") or !banci.equals("未设置")) {
 
                     Looper.prepare()
                     val ftp = f1(mainip, 21, "ls", "ls")
