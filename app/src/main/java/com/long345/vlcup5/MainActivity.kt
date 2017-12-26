@@ -22,8 +22,8 @@ import java.util.*
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.wifi.WifiManager
-import com.long345.vlcup5.R.id.bumen_image
-import com.long345.vlcup5.R.id.renyuan_image
+
+
 import com.long345.vlcup5.chaege.*
 import java.net.URL
 
@@ -158,7 +158,7 @@ class MainActivity : AppCompatActivity() {
 //      }
     var runnable = Runnable {
         kotlin.run {
-            if (!bumen.equals("未设置") or  !renyuan.equals("") or !banci.equals("未设置")) {
+            if (bumen.text!="未设置" &&  renyuan.text.toString()!="" && banci.text!="未设置") {
 
                     Looper.prepare()
                     val ftp = f1(mainip, 21, "ls", "ls")
@@ -182,7 +182,7 @@ class MainActivity : AppCompatActivity() {
                 Looper.loop()
             } else {
                 Looper.prepare()
-                Toast.makeText(this@MainActivity, "部门班次及人员均要设置", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@MainActivity, "岗点班次及人员均要设置", Toast.LENGTH_LONG).show()
                 Looper.loop()
             }
         }
