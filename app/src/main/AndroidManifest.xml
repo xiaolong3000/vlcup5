@@ -27,15 +27,7 @@
         </activity>
         <activity android:name=".ad" />
 
-        <service
-            android:name=".downloadapk"
-            android:enabled="true"
-            android:exported="true" />
 
-        <receiver
-            android:name=".downloadreceiver"
-            android:enabled="true"
-            android:exported="true" />
     </application>
 
 </manifest>

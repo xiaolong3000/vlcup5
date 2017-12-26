@@ -184,7 +184,7 @@ public class f1 {
         boolean success=false;
         try {
             this.ftpclient.changeWorkingDirectory(localpath);
-            bufferedOutputStream=new BufferedOutputStream(new FileOutputStream(localpath+"\\"+remotefile));
+            bufferedOutputStream=new BufferedOutputStream(new FileOutputStream(remotefile));
             success=this.ftpclient.retrieveFile(remotefile,bufferedOutputStream);
 
             if(success){
