@@ -15,7 +15,7 @@ import java.net.URL
 import java.util.*
 
 class ad : AppCompatActivity() {
-    val handler= Handler()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ad)
@@ -38,9 +38,7 @@ class ad : AppCompatActivity() {
                 if (thisversion == 0) {
                     share_version.edit().putString("myversion", "" + version).apply()
                 } else if (version > thisversion) {
-
                    // println("here")
-
                         val success=ftp.downfile("app.apk",filepath+"/app.apk")
                         if (success){
                             val intent=Intent(Intent.ACTION_VIEW)
@@ -62,7 +60,12 @@ class ad : AppCompatActivity() {
                     }
 
 
-                  }
+                  }else{//网络没有的话立即跳转
+
+                            val intent=Intent(this@ad,MainActivity::class.java)
+                            startActivity(intent)
+
+                }
 
                 ftp.ftpLogOut()
 

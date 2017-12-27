@@ -9,7 +9,7 @@ public class chaege {
 
     }
 
-    public static String mainip="192.168.31.190";
+    public static String mainip="192.168.1.40";
     public static final String [] bumens={"上北外勤","上南外勤","下北外勤","下南外勤","客场外勤"};
     public static final String [] bumens2={"南商检","北商检"};
     public static final String [] renyuans={"kc11","kc12","kc13","kc14"};

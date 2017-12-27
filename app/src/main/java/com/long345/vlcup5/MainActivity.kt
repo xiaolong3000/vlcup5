@@ -113,6 +113,14 @@ class MainActivity : AppCompatActivity() {
                                 }
                             }
                         }
+                        val builder=AlertDialog.Builder(this@MainActivity)
+                        val string:CharSequence= "共上传$size 个文件"
+                        builder.setTitle("上传成功").setItems(Array<CharSequence>(1){string},DialogInterface.OnClickListener(
+                                fun(_:DialogInterface,_:Int){
+                                    this@MainActivity.finish()
+                                }
+
+                        )).show()
                     } else{
                         Toast.makeText(this@MainActivity, "连接服务器失败", Toast.LENGTH_LONG).show()
                     }
@@ -126,6 +134,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+    }
 }
 
 
