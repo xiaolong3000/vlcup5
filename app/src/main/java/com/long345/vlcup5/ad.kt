@@ -12,6 +12,7 @@ import android.widget.Switch
 import com.long345.vlcup5.chaege.mainip
 import java.io.File
 import java.net.URL
+import java.util.*
 
 class ad : AppCompatActivity() {
     val handler= Handler()
@@ -21,8 +22,12 @@ class ad : AppCompatActivity() {
 
         var filepath = "" + Environment.getExternalStorageDirectory()
             Thread(Runnable { kotlin.run {
-
-                val versiontxt = URL("http://${chaege.mainip}:8080/vlc/version.txt").readText()//http://192.168.31.190:8080/vlc/version.xml
+                val ftp = f1(mainip, 21, "ls", "ls")
+                val login = ftp.ftpLogin()
+                if (login){
+              //  val versiontxt = URL("ftp://ls:ls@${chaege.mainip}/version.txt").readText()//http://192.168.31.190:8080/vlc/version.xml
+                val su=ftp.downfile("version.txt",filepath+"/version.txt")
+                    val versiontxt=File(filepath+"/version.txt").readText()
                 val regex = Regex("<version>([0-9]+)<version>")
                 val result = regex.find(versiontxt)!!.value.replace("<version>", "")
                 val version = result.toInt()
@@ -33,23 +38,33 @@ class ad : AppCompatActivity() {
                 if (thisversion == 0) {
                     share_version.edit().putString("myversion", "" + version).apply()
                 } else if (version > thisversion) {
-                    val ftp = f1(mainip, 21, "ls", "ls")
-                    val login = ftp.ftpLogin()
-                    println("here")
-                    if (login){
-                        val success=ftp.downfile("app.apk",filepath)
+
+                   // println("here")
+
+                        val success=ftp.downfile("app.apk",filepath+"/app.apk")
                         if (success){
                             val intent=Intent(Intent.ACTION_VIEW)
                             intent.setDataAndType(Uri.fromFile(File(filepath+"/app.apk")),"application/vnd.android.package-archive")
+                            share_version.edit().putString("myversion",version.toString()).apply()
                             startActivity(intent)
                         }
+                    }else{
+                    println("正常启动")
+                    val timer=Timer()
+                   timer.schedule(object :TimerTask(){
+                       override fun run() {
+                           val intent=Intent(this@ad,MainActivity::class.java)
+                           startActivity(intent)
+                       }
+                   },2500)
+
+
                     }
-                    ftp.ftpLogOut()
 
 
+                  }
 
-                }
-
+                ftp.ftpLogOut()
 
             } }).start()
 

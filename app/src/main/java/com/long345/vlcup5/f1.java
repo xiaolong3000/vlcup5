@@ -179,12 +179,12 @@ public class f1 {
         return success;
     }
 
-    public  boolean downfile(String remotefile,String localpath){
+    public  boolean downfile(String remotefile,String localfile){
         BufferedOutputStream bufferedOutputStream=null;
         boolean success=false;
         try {
-            this.ftpclient.changeWorkingDirectory(localpath);
-            bufferedOutputStream=new BufferedOutputStream(new FileOutputStream(remotefile));
+            this.ftpclient.changeWorkingDirectory(localfile);
+            bufferedOutputStream=new BufferedOutputStream(new FileOutputStream(localfile));
             success=this.ftpclient.retrieveFile(remotefile,bufferedOutputStream);
 
             if(success){
