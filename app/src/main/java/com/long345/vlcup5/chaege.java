@@ -14,7 +14,7 @@ public class chaege {
     public static final String [] bumens2={"南商检","北商检"};
     public static final String [] renyuans={"kc11","kc12","kc13","kc14"};
     public static final String[] bancis={"白班","夜班"};
-
+    public  static final String nowbanben="version-waiqin";//更换时需要改
 
 
     public static String chage_bumen(String bumen){
@@ -25,6 +25,8 @@ public class chaege {
             case "下北外勤":s="xbwq";break;
             case "下南外勤":s="xnwq";break;
             case "客场外勤":s="kcwq";break;
+            case "南商检" : s="nsj";break;
+            case "北商检" : s="bsj";break;
         }
         return s;
     }

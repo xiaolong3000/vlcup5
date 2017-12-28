@@ -69,11 +69,11 @@ public class f1 {
 
 
         } catch (SocketException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
 
 
@@ -96,7 +96,7 @@ public class f1 {
                     System.out.println("success to logout");
                 }
             } catch (IOException e) {
-                // TODO Auto-generated catch block
+
                 e.printStackTrace();
                 System.out.println("logot error");
             }finally{
@@ -168,7 +168,7 @@ public class f1 {
                    try {
                        inStream.close();
                    } catch (IOException e) {
-                       // TODO Auto-generated catch block
+
                        e.printStackTrace();
                        System.out.println("close inStream error");
                    }
@@ -218,7 +218,7 @@ public class f1 {
      * @param args
      */
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
+
 
         f1 ftp=new f1("10.103.17.167", 21, "ls", "ls");
         ftp.ftpLogin();

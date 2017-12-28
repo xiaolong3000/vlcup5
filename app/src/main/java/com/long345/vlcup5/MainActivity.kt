@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.content.DialogInterface
 import android.content.Intent
+import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiManager
 
 
@@ -37,17 +38,8 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-
-        val wifi = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
-        if (wifi.disconnect()) {
-            val builder = AlertDialog.Builder(this@MainActivity)
-            builder.setTitle("").setMessage("wifi没有连接").setPositiveButton("OK", DialogInterface.OnClickListener(
-                    fun(dia: DialogInterface, num: Int) {
-                        this@MainActivity.finish()
-                    }))
-        }
         setContentView(R.layout.activity_main)
+
         button.setOnClickListener {
             Thread(runnable).start()
         }
@@ -103,26 +95,29 @@ class MainActivity : AppCompatActivity() {
                     val login = ftp.ftpLogin()
                     if (login) {
                         val list = File(filepath).list()
-                        val size=list.size-1
+                        val size=list.size
                         list.forEach {
-                            if (!it.contains("dthumb")){
+                            var success=false
+                            if(it.contains("dthumb")){
+                                success=true
+                            }else{
                                 val localfile = File(filepath + "/" + it)
-                                val success=ftp.uploadFile(localfile,chage_bumen(bumen.text.toString()), chage_banci(banci.text.toString()), renyuan.text.toString(), progressBar)
+                                success=ftp.uploadFile(localfile,chage_bumen(bumen.text.toString()), chage_banci(banci.text.toString()), renyuan.text.toString(), progressBar)
+                            }
                                 if (success){
                                     handler.post(Runnable { kotlin.run { files.text="共有 $size 个文件，上传 ${list.indexOf(it)} 个" } })
                                 }
-                            }
                         }
                         val builder=AlertDialog.Builder(this@MainActivity)
-                        val string:CharSequence= "共上传$size 个文件"
-                        builder.setTitle("上传成功").setItems(Array<CharSequence>(1){string},DialogInterface.OnClickListener(
+                        val string:CharSequence= "大吉大利"
+                        builder.setTitle("全部上传完成").setPositiveButton(string,DialogInterface.OnClickListener(//Array<CharSequence>(1){string}
                                 fun(_:DialogInterface,_:Int){
                                     this@MainActivity.finish()
                                 }
 
                         )).show()
                     } else{
-                        Toast.makeText(this@MainActivity, "连接服务器失败", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this@MainActivity, "连接服务器失败,请检查wifi及网络", Toast.LENGTH_LONG).show()
                     }
                 ftp.ftpLogOut()
                 Looper.loop()
