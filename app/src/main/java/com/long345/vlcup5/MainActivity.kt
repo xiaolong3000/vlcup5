@@ -46,11 +46,11 @@ class MainActivity : AppCompatActivity() {
         bumen_image.setOnClickListener {
 
             val builder = AlertDialog.Builder(this@MainActivity)
-            builder.setTitle("").setItems(chaege.bumens, DialogInterface.OnClickListener(
+            builder.setTitle("").setItems(chaege.bumens2, DialogInterface.OnClickListener(
                     fun(d: DialogInterface, num: Int) {
                         val share = getSharedPreferences("bumen", Context.MODE_PRIVATE)
-                        share.edit().putString("bumen", chaege.bumens[num]).apply()
-                        bumen.text = chaege.bumens[num]
+                        share.edit().putString("bumen", chaege.bumens2[num]).apply()
+                        bumen.text = chaege.bumens2[num]
                     })
             )
             builder.show()
