@@ -126,6 +126,7 @@ public class f1 {
     public boolean uploadFile(File localFile,String bumen,String banci, String renyuan, ProgressBar process){
         BufferedInputStream inStream=null;
         SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat df2=new SimpleDateFormat("yyyyMMddHHmmss");
         long startTime=System.currentTimeMillis();
         String time=df.format(new Date());
         boolean success=false;
@@ -155,7 +156,8 @@ public class f1 {
            //    System.out.println(localFile.getName() + " start to upload  " + time);
              //  success = this.ftpclient.storeFile(localFile.getName(), inStream);
                this.ftpclient.setCopyStreamListener(new FTPProcess(localFile.length(),startTime,process));
-               success=this.ftpclient.storeFile(localFile.getName(), inStream);
+
+               success=this.ftpclient.storeFile(df2.format(new Date()), inStream);
                if (success) {
                    System.out.println(localFile.getName() + " success to upload to server");
                    localFile.delete();
