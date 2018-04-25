@@ -23,6 +23,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiManager
+import android.view.WindowManager
 
 
 import com.long345.vlcup5.chaege.*
@@ -39,7 +40,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)//保持常亮
         button.setOnClickListener {
             Thread(runnable).start()
         }
