@@ -25,31 +25,26 @@ class ad : AppCompatActivity() {
         val bumen=chaege.nowbanben
 
         var filepath = "" + Environment.getExternalStorageDirectory()
+        val mytxt=File(filepath+"/myversion.txt")
+        if (!mytxt.exists()){
+            mytxt.mkdir()
+            mytxt.writeText("0")
+        }
             Thread(Runnable { kotlin.run {
                 val ftp = f1(mainip, 21, "ls", "ls")
                 val login = ftp.ftpLogin()
                 if (login){
-
-
-              //  val versiontxt = URL("ftp://ls:ls@${chaege.mainip}/version.txt").readText()//http://192.168.31.190:8080/vlc/version.xml
                 val su=ftp.downfile("version.txt",filepath+"/version.txt")
                 val versiontxt=File(filepath+"/version.txt").readText()
                 val regex = Regex("<$bumen>([0-9]+)<$bumen>")
                 val result = regex.find(versiontxt)!!.value.replace("<$bumen>", "")
                 val version = result.toInt()
-                    val mytxt=File(filepath+"/myversion.txt")
-                    if (!mytxt.exists()){
-                        mytxt.mkdir()
-                       mytxt.writeText("0")
-                    }
 
 //                val share_version = getSharedPreferences("myversion", Context.MODE_PRIVATE)
 //                val thisversion = share_version.getString("myversion", "0").toInt()
                 val thisversion=mytxt.readText().toInt()
                 textview2.text="服务器ip:$mainip,部门:$bumen,版本号:$version,本机版本号:$thisversion"
-
                if (version > thisversion) {
-                   // println("here")
                         val success=ftp.downfile("$bumen.apk", "$filepath/$bumen.apk")
                         if (success){
                             val intent=Intent(Intent.ACTION_VIEW)
@@ -59,7 +54,6 @@ class ad : AppCompatActivity() {
                             startActivity(intent)
                         }
                     }else{
-//                    println("正常启动")
                     val timer=Timer()
                    timer.schedule(object :TimerTask(){
                        override fun run() {
@@ -68,7 +62,7 @@ class ad : AppCompatActivity() {
                            finish()
                        }
                    },1000)
-                    }
+                  }
                   }else{//网络没有的话立即跳转
 
 //                            val intent=Intent(this@ad,MainActivity::class.java)
