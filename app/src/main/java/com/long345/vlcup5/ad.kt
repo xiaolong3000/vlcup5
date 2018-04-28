@@ -22,7 +22,7 @@ class ad : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ad)
-
+        val bumen=chaege.nowbanben
 
         var filepath = "" + Environment.getExternalStorageDirectory()
             Thread(Runnable { kotlin.run {
@@ -31,11 +31,9 @@ class ad : AppCompatActivity() {
                 if (login){
 
 
-
               //  val versiontxt = URL("ftp://ls:ls@${chaege.mainip}/version.txt").readText()//http://192.168.31.190:8080/vlc/version.xml
                 val su=ftp.downfile("version.txt",filepath+"/version.txt")
                 val versiontxt=File(filepath+"/version.txt").readText()
-                val bumen=chaege.nowbanben
                 val regex = Regex("<$bumen>([0-9]+)<$bumen>")
                 val result = regex.find(versiontxt)!!.value.replace("<$bumen>", "")
                 val version = result.toInt()
@@ -48,51 +46,29 @@ class ad : AppCompatActivity() {
 //                val share_version = getSharedPreferences("myversion", Context.MODE_PRIVATE)
 //                val thisversion = share_version.getString("myversion", "0").toInt()
                 val thisversion=mytxt.readText().toInt()
-                    textview2.text="服务器ip:$mainip,部门:$bumen,版本号:$version,本机版本号:$thisversion"
+                textview2.text="服务器ip:$mainip,部门:$bumen,版本号:$version,本机版本号:$thisversion"
 
-
-
-                    button2.setOnClickListener {
+               if (version > thisversion) {
+                   // println("here")
                         val success=ftp.downfile("$bumen.apk", "$filepath/$bumen.apk")
                         if (success){
                             val intent=Intent(Intent.ACTION_VIEW)
                             intent.setDataAndType(Uri.fromFile(File("$filepath/$bumen.apk")),"application/vnd.android.package-archive")
+                         //   share_version.edit().putString("myversion",version.toString()).apply()
                             mytxt.writeText("$version")
                             startActivity(intent)
                         }
-                    }
-                    button3.setOnClickListener {
+                    }else{
+//                    println("正常启动")
+                    val timer=Timer()
+                   timer.schedule(object :TimerTask(){
+                       override fun run() {
                            val intent=Intent(this@ad,MainActivity::class.java)
                            startActivity(intent)
                            finish()
+                       }
+                   },1000)
                     }
-
-
-//                if (thisversion == 0) {
-//                   // share_version.edit().putString("myversion", "" + version).apply()
-//                    val intent=Intent(this@ad,MainActivity::class.java)
-//                    startActivity(intent)
-//                    finish()
-//                } else if (version > thisversion) {
-//                   // println("here")
-//                        val success=ftp.downfile("$bumen.apk", "$filepath/$bumen.apk")
-//                        if (success){
-//                            val intent=Intent(Intent.ACTION_VIEW)
-//                            intent.setDataAndType(Uri.fromFile(File("$filepath/$bumen.apk")),"application/vnd.android.package-archive")
-//                            share_version.edit().putString("myversion",version.toString()).apply()
-//                            startActivity(intent)
-//                        }
-//                    }else{
-////                    println("正常启动")
-////                    val timer=Timer()
-////                   timer.schedule(object :TimerTask(){
-////                       override fun run() {
-////                           val intent=Intent(this@ad,MainActivity::class.java)
-////                           startActivity(intent)
-////                           finish()
-////                       }
-////                   },1000)
-//                    }
                   }else{//网络没有的话立即跳转
 
 //                            val intent=Intent(this@ad,MainActivity::class.java)
@@ -106,7 +82,20 @@ class ad : AppCompatActivity() {
 
             } }).start()
 
-
+//        button2.setOnClickListener {
+//            val success=ftp.downfile("$bumen.apk", "$filepath/$bumen.apk")
+//            if (success){
+//                val intent=Intent(Intent.ACTION_VIEW)
+//                intent.setDataAndType(Uri.fromFile(File("$filepath/$bumen.apk")),"application/vnd.android.package-archive")
+//                mytxt.writeText("$version")
+//                startActivity(intent)
+//            }
+//        }
+//        button3.setOnClickListener {
+//            val intent=Intent(this@ad,MainActivity::class.java)
+//            startActivity(intent)
+//            finish()
+//        }
 
     }
 }
