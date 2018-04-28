@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     var filepath = "" + Environment.getExternalStorageDirectory() + "/DCIM/Camera"
     val handler=Handler()
+    val bumens=chaege.bumens2//这里更改所属部门
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,11 +48,11 @@ class MainActivity : AppCompatActivity() {
         bumen_image.setOnClickListener {
 
             val builder = AlertDialog.Builder(this@MainActivity)
-            builder.setTitle("").setItems(chaege.bumens3, DialogInterface.OnClickListener(
+            builder.setTitle("").setItems(bumens, DialogInterface.OnClickListener(
                     fun(d: DialogInterface, num: Int) {
                         val share = getSharedPreferences("bumen", Context.MODE_PRIVATE)
-                        share.edit().putString("bumen", chaege.bumens3[num]).apply()
-                        bumen.text = chaege.bumens3[num]
+                        share.edit().putString("bumen", bumens[num]).apply()
+                        bumen.text = bumens[num]
                     })
             )
             builder.show()
@@ -106,7 +107,7 @@ class MainActivity : AppCompatActivity() {
                                 success=ftp.uploadFile(localfile,chage_bumen(bumen.text.toString()), chage_banci(banci.text.toString()), renyuan.text.toString(), progressBar)
                             }
                                 if (success){
-                                    handler.post(Runnable { kotlin.run { files.text="共有 $size 个文件，上传 ${list.indexOf(it)} 个" } })
+                                    handler.post(Runnable { kotlin.run { files.text="共有 $size 个文件，上传 ${list.indexOf(it)+1} 个" } })
                                 }
                         }
                         val builder=AlertDialog.Builder(this@MainActivity)
