@@ -48,7 +48,7 @@ class ad : AppCompatActivity() {
 //                val share_version = getSharedPreferences("myversion", Context.MODE_PRIVATE)
 //                val thisversion = share_version.getString("myversion", "0").toInt()
                 val thisversion=mytxt.readText().toInt()
-                    textview2.text="服务器ip:$mainip,版本号:$version,本机版本号:$thisversion"
+                    textview2.text="服务器ip:$mainip,部门:$bumen,版本号:$version,本机版本号:$thisversion"
 
 
 
