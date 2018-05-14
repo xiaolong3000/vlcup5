@@ -18,7 +18,7 @@
     <TextView
         android:id="@+id/textview2"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="50dp"
 
         android:text="程序所在部门" />
 

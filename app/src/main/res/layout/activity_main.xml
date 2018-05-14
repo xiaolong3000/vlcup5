@@ -96,13 +96,11 @@
             android:layout_height="wrap_content"
             android:text="人员 :" />
 
-        <EditText
+        <TextView
             android:id="@+id/renyuan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:layout_weight="1" />
 
     </LinearLayout>
 
@@ -142,13 +140,28 @@
         android:orientation="vertical">
 
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="142dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="85dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="142dp"
+                android:layout_height="85dp"
 
 
-            android:text="上传" />
+                android:background="@android:color/holo_orange_dark"
+                android:text="上传" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="142dp"
+                android:layout_height="85dp"
+                android:layout_weight="1"
+                android:background="@android:color/holo_blue_dark"
+                android:text="选择人员" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -161,6 +174,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/holo_blue_dark"
                 android:text="岗点" />
 
             <Button
@@ -168,6 +182,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/holo_orange_dark"
                 android:text="班次" />
 
         </LinearLayout>

@@ -76,6 +76,20 @@ class MainActivity : AppCompatActivity() {
         val share3=getSharedPreferences("banci",Context.MODE_PRIVATE)
         banci.text=share3.getString("banci","未设置")
 
+
+        button4.setOnClickListener {//选择人员
+            val builder = AlertDialog.Builder(this@MainActivity)
+            val name_array= map_name.values.toTypedArray()
+            builder.setTitle("").setItems(name_array, DialogInterface.OnClickListener(
+                    fun(d: DialogInterface, num: Int) {
+
+                        renyuan.text = name_array[num]
+                        println(name_array[num])
+                    }
+            ))
+            builder.show()
+
+        }
     }//oncreate
 
 
@@ -90,7 +104,7 @@ class MainActivity : AppCompatActivity() {
 //      }
     var runnable = Runnable {
         kotlin.run {
-            if (bumen.text!="未设置" &&  renyuan.text.toString()!="" && banci.text!="未设置") {
+            if (bumen.text!="未设置" &&  renyuan.text!="" && banci.text!="未设置") {
 
                     Looper.prepare()
                     val ftp = f1(mainip, 21, "ls", "ls")
@@ -125,7 +139,7 @@ class MainActivity : AppCompatActivity() {
                 Looper.loop()
             } else {
                 Looper.prepare()
-                Toast.makeText(this@MainActivity, "岗点班次及人员均要设置", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@MainActivity, "岗点,班次,人员均要设置", Toast.LENGTH_LONG).show()
                 Looper.loop()
             }
         }

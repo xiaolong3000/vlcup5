@@ -1,5 +1,10 @@
 package com.long345.vlcup5;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by Administrator on 2017/12/11.
  */
@@ -16,7 +21,7 @@ public class chaege {
   //  public static final String [] renyuans={"kc11","kc12","kc13","kc14"};
     public static final String[] bancis={"白班","夜班"};
     public  static final String nowbanben="version-shangjian";//更换时需要改version-bei
-
+    public static final Map<String,String> map_name=new HashMap<>();
 
     public static String chage_bumen(String bumen){
         String s="error";
