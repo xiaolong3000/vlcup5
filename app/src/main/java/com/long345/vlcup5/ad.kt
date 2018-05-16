@@ -32,7 +32,7 @@ class ad : AppCompatActivity() {
         val bumen=chaege.nowbanben
         val handler=Handler()
         var version=0
-        var update=false
+        val regex = Regex("<$bumen>([0-9]+)<$bumen>")
         button2.visibility=View.INVISIBLE
         var filepath = "" + Environment.getExternalStorageDirectory()
         val mytxt=File(filepath+"/myversion.txt")
@@ -54,12 +54,17 @@ class ad : AppCompatActivity() {
                    // val names=BufferedReader(InputStreamReader(FileInputStream(filepath + "/name.txt"),"utf-8")).readLines()
                     names.forEach {
 
-                        map_name.put(it.split("/")[0],it.split("/")[1])
+
+                        if(it.contains("$bumen")){
+                            val tname=it.replace("<$bumen>", "")
+                            map_name.put(tname.split("/")[0],tname.split("/")[1])
+                        }
+
 
                     }
 
 
-                    val regex = Regex("<$bumen>([0-9]+)<$bumen>")
+
                     val result = regex.find(versiontxt)!!.value.replace("<$bumen>", "")
                     version = result.toInt()
 
@@ -86,10 +91,11 @@ class ad : AppCompatActivity() {
                                 kotlin.run {
 
                                     textview2.text = "有新版本可以更新"
-                                    update=true
+                                    button2.visibility=View.VISIBLE
 
                                 }
                             })
+
                         }
                     }
 //               else{
@@ -109,8 +115,7 @@ class ad : AppCompatActivity() {
                 }
              }).start()
 
-          if (update){
-              button2.visibility= View.VISIBLE
+
               button2.setOnClickListener {
                   val intent=Intent(Intent.ACTION_VIEW)
                   intent.setDataAndType(Uri.fromFile(File("$filepath/$bumen.apk")),"application/vnd.android.package-archive")
@@ -119,7 +124,7 @@ class ad : AppCompatActivity() {
                   startActivity(intent)
 
               }
-          }
+
 
 
 

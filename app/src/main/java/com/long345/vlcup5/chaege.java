@@ -15,12 +15,24 @@ public class chaege {
     }
 
     public static String mainip="192.168.1.40";
-    public static final String [] bumens={"上北外勤","上南外勤","下北外勤","下南外勤","客场外勤"};
-    public static final String [] bumens2={"南商检","北商检"};
-    public static final String [] bumens3={"商检","北外勤","南外勤"};
-  //  public static final String [] renyuans={"kc11","kc12","kc13","kc14"};
+    public static String [] bumens={"上北外勤","上南外勤","下北外勤","下南外勤","客场外勤"};
+    public static String [] bumens2={"南商检","北商检"};
+    public static String [] bumens3={"商检","北外勤","南外勤"};
     public static final String[] bancis={"白班","夜班"};
-    public  static final String nowbanben="version-shangjian";//更换时需要改version-bei
+
+
+
+
+    public  static final String nowbanben="waiqin";//需要更改
+    public static final String[] thebumen=bumens;//需要更改
+
+
+
+
+
+
+
+
     public static final Map<String,String> map_name=new HashMap<>();
 
     public static String chage_bumen(String bumen){

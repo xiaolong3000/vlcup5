@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
     var filepath = "" + Environment.getExternalStorageDirectory() + "/DCIM/Camera"
     val handler=Handler()
-    val bumens=chaege.bumens2//这里更改所属部门
+    val bumens=chaege.thebumen
 
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -157,6 +157,12 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
 
+    }
+
+
+    override fun onStop() {
+        super.onStop()
+        this@MainActivity.finish()
     }
 }
 
