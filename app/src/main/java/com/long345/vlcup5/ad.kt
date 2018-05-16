@@ -20,6 +20,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.InputStreamReader
 import java.net.URL
+import java.nio.charset.Charset
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -49,8 +50,8 @@ class ad : AppCompatActivity() {
                     ftp.downfile("version.txt", filepath + "/version.txt")
                     ftp.downfile("name.txt",filepath+"/name.txt")
                     val versiontxt = File(filepath + "/version.txt").readText()
-                  //  val names=File(filepath + "/name.txt").readLines()
-                    val names=BufferedReader(InputStreamReader(FileInputStream(filepath + "/name.txt"),"utf-8")).readLines()
+                    val names=File(filepath + "/name.txt").readLines(Charset.forName("gb2312"))
+                   // val names=BufferedReader(InputStreamReader(FileInputStream(filepath + "/name.txt"),"utf-8")).readLines()
                     names.forEach {
 
                         map_name.put(it.split("/")[0],it.split("/")[1])

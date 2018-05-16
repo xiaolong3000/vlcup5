@@ -24,10 +24,12 @@ import android.content.Intent
 import android.net.wifi.WifiConfiguration
 import android.net.wifi.WifiManager
 import android.view.WindowManager
+import com.long345.vlcup5.R.id.*
 
 
 import com.long345.vlcup5.chaege.*
 import java.net.URL
+import java.nio.charset.Charset
 
 
 class MainActivity : AppCompatActivity() {
@@ -84,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                     fun(d: DialogInterface, num: Int) {
 
                         renyuan.text = name_array[num]
-                        println(name_array[num])
+                       // println(name_array[num])
                     }
             ))
             builder.show()
@@ -118,7 +120,14 @@ class MainActivity : AppCompatActivity() {
                                 success=true
                             }else{
                                 val localfile = File(filepath + "/" + it)
-                                success=ftp.uploadFile(localfile,chage_bumen(bumen.text.toString()), chage_banci(banci.text.toString()), renyuan.text.toString(), progressBar)
+
+                                var sendname="nopeople"
+                               map_name.keys.forEach {
+                                   if(map_name.get(it).equals(renyuan.text.toString())){
+                                       sendname=it
+                                   }
+                               }
+                                success=ftp.uploadFile(localfile,chage_bumen(bumen.text.toString()), chage_banci(banci.text.toString()),sendname, progressBar)
                             }
                                 if (success){
                                     handler.post(Runnable { kotlin.run { files.text="共有 $size 个文件，上传 ${list.indexOf(it)+1} 个" } })
