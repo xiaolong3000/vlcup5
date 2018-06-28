@@ -49,7 +49,9 @@ class ad : AppCompatActivity() {
                 if (login) {
                     ftp.downfile("version.txt", filepath + "/version.txt")
                     ftp.downfile("name.txt",filepath+"/name.txt")
+                    ftp.downfile("space.txt",filepath+"/space.txt")
                     val versiontxt = File(filepath + "/version.txt").readText()
+                    val space=File(filepath+"/space.txt").readText()
                     val names=File(filepath + "/name.txt").readLines(Charset.forName("gb2312"))
                    // val names=BufferedReader(InputStreamReader(FileInputStream(filepath + "/name.txt"),"utf-8")).readLines()
                     names.forEach {
@@ -64,7 +66,10 @@ class ad : AppCompatActivity() {
                     }
 
 
-
+                    val thespace=space.split("/")[1].toInt()
+                    if (thespace>=90){
+                       morespace=true
+                    }
                     val result = regex.find(versiontxt)!!.value.replace("<$bumen>", "")
                     version = result.toInt()
 

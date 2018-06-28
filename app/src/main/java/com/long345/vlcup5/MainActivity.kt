@@ -107,9 +107,12 @@ class MainActivity : AppCompatActivity() {
     var runnable = Runnable {
         kotlin.run {
             if (bumen.text!="未设置" &&  renyuan.text!="" && banci.text!="未设置") {
-
                     Looper.prepare()
-                    val ftp = f1(mainip, 21, "ls", "ls")
+                    val ftp = if (morespace){
+                        f1(mainip+"/e", 21, "ls", "ls")//另一个盘符
+                    }else{
+                        f1(mainip, 21, "ls", "ls")
+                    }
                     val login = ftp.ftpLogin()
                     if (login) {
                         val list = File(filepath).list()
