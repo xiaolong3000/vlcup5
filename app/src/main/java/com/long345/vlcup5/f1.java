@@ -7,6 +7,8 @@ import android.widget.TextView;
 
 
 import java.io.*;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.SocketException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,7 +50,8 @@ public class f1 {
 
         try {
             if (this.port > 0) {
-                this.ftpclient.connect(this.IP, this.port);
+               this.ftpclient.connect(this.IP, this.port);
+
             }else{
                 this.ftpclient.connect(this.IP);
             }
@@ -60,6 +63,7 @@ public class f1 {
                 return isLogin;
             }
             this.ftpclient.login(this.user, this.pass);
+
             this.ftpclient.enterLocalPassiveMode();
             this.ftpclient.setFileType(FTPClient.BINARY_FILE_TYPE);
 

@@ -67,7 +67,7 @@ class ad : AppCompatActivity() {
 
 
                     val thespace=space.split("/")[1].toInt()
-                    if (thespace>=90){
+                    if (thespace>=96){
                        morespace=true
                     }
                     val result = regex.find(versiontxt)!!.value.replace("<$bumen>", "")
