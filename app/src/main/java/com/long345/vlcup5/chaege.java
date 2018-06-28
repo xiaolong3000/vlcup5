@@ -14,7 +14,7 @@ public class chaege {
 
     }
 
-    public static String mainip="192.168.1.52";//服务器地址，需要更改
+    public static String mainip="192.168.1.53";//服务器地址，需要更改
     public static boolean morespace=false;
     public static String [] bumens={"上北外勤","上南外勤","下北外勤","下南外勤","客场外勤"};
     public static String [] bumens2={"南商检","北商检"};
@@ -24,7 +24,7 @@ public class chaege {
 
 
 
-    public  static final String nowbanben="shangjian52";//需要更改
+    public  static final String nowbanben="shangjian53";//需要更改
     public static final String[] thebumen=bumens2;//需要更改
 
 

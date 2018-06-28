@@ -109,7 +109,7 @@ class MainActivity : AppCompatActivity() {
             if (bumen.text!="未设置" &&  renyuan.text!="" && banci.text!="未设置") {
                     Looper.prepare()
                     val ftp = if (morespace){
-                        f1(mainip+"/e", 21, "ls", "ls")//另一个盘符
+                        f1(mainip+"/e/", 21, "ls", "ls")//另一个盘符
                     }else{
                         f1(mainip, 21, "ls", "ls")
                     }
